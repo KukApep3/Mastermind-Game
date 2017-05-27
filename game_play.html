@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mastermind</title>
+  <link rel="stylesheet" type="text/css" href="css/w3.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="icon" type="image/ico" href="css/images/icon.png">
+  <script type="text/javascript" src="js/timerFunction.js"></script>
+  <script type="text/javascript" src="js/dropdown.js"></script>
+  <script type="text/javascript" src="js/account_handler.js"></script>
+  <script type="text/javascript" src="js/game_logic.js"></script>
+
+  <script type="text/javascript">
+    if (!localStorage.getItem("current_user") || localStorage.getItem("current_user") == undefined) {
+      var temp = prompt("You need to provide a username to play.");
+      localStorage.setItem("current_user", "temp_" + temp);
+    }
+
+    $(function() {
+      check_login();
+      document.getElementById("avatar").src = localStorage.getItem("current_avatar");
+    });
+
+    window.addEventListener("beforeunload", function(event) {
+      event.returnValue = "\o/";
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="w3-bar menu_image w3-container">
+      <a href="index.html" class="w3-button w3-hover-red w3-left w3-padding-16"><i class="fa fa-home w3-xlarge"></i></a>
+      <a>
+        <div class="w3-dropdown-click">
+          <button onclick="dropdownFunction()" class="w3-button w3-hover-red w3-padding-16 w3-hide-large"><i class="fa fa-bars w3-xlarge"></i></button>
+          <div id="drops" class="w3-dropdown-content w3-bar-block w3-white w3-border">
+            <a href="start.html" class="w3-button w3-hover-red w3-block">Start</a>
+            <a href="about.html" class="w3-button w3-hover-red w3-block">About</a>
+            <a href="rules.html" class="w3-button w3-hover-red w3-block">Rules</a>
+            <a href="team.html" class="w3-button w3-hover-red w3-block">Team</a>
+            <a href="scores.html" class="w3-button w3-hover-red w3-block">Scores</a>
+          </div>
+        </div>
+      </a>
+      <a href="start.html" class="w3-button w3-hover-red w3-left w3-hide-small w3-hide-medium w3-padding-16">Start</a>
+      <a href="about.html" class="w3-button w3-hover-red w3-left w3-hide-small w3-hide-medium w3-padding-16">About</a>
+      <a href="rules.html" class="w3-button w3-hover-red w3-left w3-hide-small w3-hide-medium w3-padding-16">Rules</a>
+      <a href="team.html" class="w3-button w3-hover-red w3-left w3-hide-small w3-hide-medium w3-padding-16">Team</a>
+      <a href="scores.html" class="w3-button w3-hover-red w3-left w3-hide-small w3-hide-medium w3-padding-16">Scores</a>
+      <a href="login.html" id="unlogged" class="w3-text-white w3-hover-text-red w3-right w3-padding"><i class="fa fa-user-circle w3-xxlarge"></i></a>
+
+      <div id="logged" class="w3-right w3-text-white">
+        <div class="w3-dropdown-click w3-right w3-text-white">
+          <button class="w3-button" onclick="dropdown()"><div class='img_rounded'><img id='avatar' src=""</div></button>
+          <div id="drop_content" class="w3-dropdown-content w3-bar-block w3-card-4">
+            <span class="w3-margin-top w3-bar-item w3-text-red">
+              <script>document.write("Hello " + localStorage.current_user)</script>
+            </span>
+            <a href="index.html" class="w3-bar-item w3-button" onclick="logout()">Log Out</a>
+          </div>
+        </div>
+      </div>
+      </script>
+    </div>
+  </header>
+
+  <button class="w3-button w3-right w3-padding-large w3-border w3-margin" onclick="informationOpen()">Informations <i class="fa fa-angle-down"></i></button>
+
+  <div id="informations" class="w3-sidebar w3-bar-block w3-card-2 w3-animate-right">
+    <button class="w3-bar-item w3-button" onclick="informationClose()"><i class="fa fa-close"></i></button>
+    <div class="w3-container">
+      <h2 class="w3-bar-item w3-center">Hello!</h2>
+      <p>Welcome to the game play of Mastermind. You probably have some doubts about how this works, but i'm here to help you with that, just follow the steps.</p>
+    </div>
+
+    <div class="w3-amber w3-bar-item">
+      <h3>First</h3>
+      <p>Select a color on the left pallete. You'll notice that when a color is selected the opacity of the color is less.</p>
+    </div>
+    <div class="w3-lime w3-bar-item">
+      <h3>Second</h3>
+      <p>Pin the selected color in the circles on the left of the button "Start/Enter". You can pin it in every position you like best.</p>
+      <p><img alt="information" src="css/images/information_sequence.png"></p>
+      <div class="w3-card w3-container">
+        <h4>About the image...</h4>
+        <p>On the right of the button 'Start/Enter', there's the circles of the sequence you'll make to get the right combination.</p>
+        <p>On the left of the button 'Start/Enter', there's the place where you'll see if you're guess combination is the right one or if you're close to the right one.</p>
+        <dl>
+          <dt>Blacks:</dt>
+          <dd>Means that one of the colors in you're guess sequence is in the right place.</dd>
+          <dt>Whites:</dt>
+          <dd>Means that one of the colors in you're guess sequence is in the correct sequence but in the wrong place.</dd>
+        </dl>
+        <p><strong>NOTE: </strong>The hints don't show the correct position.</p>
+      </div>
+    </div>
+    <div class="w3-amber w3-bar-item">
+      <h3>Third</h3>
+      <p>Just click the button 'Start/Enter' and the computer will do the rest.</p>
+      <p><strong>NOTE: </strong>you'll notice that the combination you've just entered just duplicated. The previous combination you do will remain in the guess sequence circles, you can just change it by selecting other color and pin them on top of the ones that there were before.</p>
+    </div>
+    <div class="w3-container">
+      <p>For information about the game play, please go to the 'Rules' page.</p>
+      <a class="w3-button w3-lime w3-hover-amber w3-padding-large w3-right" href="about.html">Rules</a>
+    </div>
+  </div>
+
+  <div id="main" class="w3-container w3-center">
+    <center>
+      <div class="w3-container board">
+        <div class="w3-third w3-mobile">
+          <div class="timer_score w3-painel w3-padding w3-centered">
+            <h2>Timer</h2>
+            <p id="timer">00:00</p>
+            <h2>Attempts</h2>
+            <p id="attempts"></p>
+          </div>
+
+          <table class="color_picker w3-centered">
+            <tr><td value ="red" class="w3-red"></td></tr>
+            <tr><td value="blue" class="w3-cyan"></td></tr>
+            <tr><td value="green" class="w3-green"></td></tr>
+            <tr><td value="yellow" class="w3-yellow"></td></tr>
+            <tr><td value="orange" class="w3-orange"></td></tr>
+            <tr><td value="purple" class="w3-purple"></td></tr>
+            <tr><td value="pink" class="w3-pink"></td></tr>
+          </table>
+        </div>
+
+        <div class="w3-rest w3-mobile">
+          <table class="game w3-half w3-centered" id="gtable">
+            <tr>
+              <td class="guess" id="guess">&nbsp;</td>
+              <td class="guess" id="guess">&nbsp;</td>
+              <td class="guess" id="guess">&nbsp;</td>
+              <td class="guess" id="guess">&nbsp;</td>
+              <td id="go"><button class="go w3-button w3-round w3-padding w3-brown w3-hover-khaki">START</button></td>
+              <td class="answer circle">&nbsp;</td>
+              <td class="answer circle">&nbsp;</td>
+              <td class="answer circle">&nbsp;</td>
+              <td class="answer circle">&nbsp;</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+    </center>
+  </div>
+
+  <footer class="w3-container w3-black">
+    <p class="w3-right w3-small">Introdução às Tecnologias Web, Faculdade Ciências, ULisboa</p>
+  </footer>
+</body>
+
+</html>

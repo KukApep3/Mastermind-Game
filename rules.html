@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mastermind</title>
+  <link rel="stylesheet" type="text/css" href="css/w3.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="icon" type="image/ico" href="css/images/icon.png">
+  <script type="text/javascript" src="js/dropdown.js"></script>
+  <script type="text/javascript" src="js/account_handler.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      check_login();
+      document.getElementById("avatar").src = localStorage.getItem("current_avatar");
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="w3-bar menu_image w3-container">
+      <a href="index.html" class="w3-button w3-hover-red w3-left w3-padding-16"><i class="fa fa-home w3-xlarge"></i></a>
+      <a>
+        <div class="w3-dropdown-click">
+          <button onclick="dropdownFunction()" class="w3-button w3-hover-red w3-padding-16 w3-hide-large"><i class="fa fa-bars w3-xlarge"></i></button>
+          <div id="drops" class="w3-dropdown-content w3-bar-block w3-white w3-border">
+            <a href="start.html" class="w3-button w3-hover-red w3-block">Start</a>
+            <a href="about.html" class="w3-button w3-hover-red w3-block">About</a>
+            <a href="rules.html" class="w3-button w3-hover-red w3-block">Rules</a>
+            <a href="team.html" class="w3-button w3-hover-red w3-block">Team</a>
+            <a href="scores.html" class="w3-button w3-hover-red w3-block">Scores</a>
+          </div>
+        </div>
+      </a>
+      <a href="start.html" class="w3-button w3-hover-red w3-left w3-hide-small w3-hide-medium w3-padding-16">Start</a>
+      <a href="about.html" class="w3-button w3-hover-red w3-left w3-hide-small w3-hide-medium w3-padding-16">About</a>
+      <a href="rules.html" class="w3-button w3-hover-red w3-left w3-hide-small w3-hide-medium w3-padding-16">Rules</a>
+      <a href="team.html" class="w3-button w3-hover-red w3-left w3-hide-small w3-hide-medium w3-padding-16">Team</a>
+      <a href="scores.html" class="w3-button w3-hover-red w3-left w3-hide-small w3-hide-medium w3-padding-16">Scores</a>
+      <a href="login.html" id="unlogged" class="w3-text-white w3-hover-text-red w3-right w3-padding"><i class="fa fa-user-circle w3-xxlarge"></i></a>
+
+      <div id="logged" class="w3-right w3-text-white">
+        <div class="w3-dropdown-click w3-right w3-text-white">
+          <button class="w3-button" onclick="dropdown()"><div class='img_rounded'><img id='avatar' src=""</div></button>
+          <div id="drop_content" class="w3-dropdown-content w3-bar-block w3-card-4">
+            <span class="w3-margin-top w3-bar-item w3-text-red">
+              <script>document.write("Hello " + localStorage.current_user)</script>
+            </span>
+            <a href="index.html" class="w3-bar-item w3-button" onclick="logout()">Log Out</a>
+          </div>
+        </div>
+      </div>
+      </script>
+    </div>
+  </header>
+
+  <div class="w3-container">
+    <h1>Rules</h1>
+    <p>The game is to be Homeed by two parties:</p>
+    <dl>
+      <dt><strong>The PC</strong></dt>
+      <dd>- which is the codemaker and chooses a pattern of four code pegs.</dd>
+      <dt><strong>The Homeer</strong></dt>
+      <dd>- which assumes de role of codebreaker and tries to guess the pattern.</dd>
+    </dl>
+
+    <p><strong>The PC</strong> sets a pattern of four pegs at the beginning of the game. <br> <strong>The Homeer</strong> tries to guess the pattern, in both order and color, within a number of turns.</p>
+
+    <p>Each guess is made by placing a row of code pegs on the board.</p>
+
+    <p>Once placed, the codemaker provides feedback by placing from zero to four key pegs in the small holes of the row with the guess. <br>
+    A <strong>black key peg</strong> is placed for each code peg from the guess which is correct in both color and position. <br>
+    A <strong>white key peg</strong> indicates the existence of a correct color code peg placed in the wrong position. <br>
+    <em> &nbsp Note:The position of the black key pegs in no way indicates which of the guesses is the correct one.</em></p>
+
+    <h3>Available difficulties:</h3>
+      <p>Duplicates are allowed depending on difficulty so the PC could even choose four code pegs of the same color or four blanks.</p>
+
+      <table class="w3-table w3-centered">
+          <thead class="w3-amber">
+              <tr>
+                  <th>Easy</th>
+                  <th>Medium</th>
+                  <th>Difficult</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr class="w3-pale-yellow">
+                  <td>Four colors.</td>
+                  <td>Six colors.</td>
+                  <td>Seven colors.</td>
+              </tr>
+          </tbody>
+      </table>
+
+  </div>
+
+  <footer class="w3-container w3-black w3-margin-top">
+        <p class="w3-right w3-small">Introdução às Tecnologias Web, Faculdade Ciências, ULisboa</p>
+    </footer>
+</body>
+</html>

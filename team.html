@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mastermind</title>
+  <link rel="stylesheet" type="text/css" href="css/w3.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="icon" type="image/ico" href="css/images/icon.png">
+  <script type="text/javascript" src="js/dropdown.js"></script>
+  <script type="text/javascript" src="js/account_handler.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      check_login();
+      document.getElementById("avatar").src = localStorage.getItem("current_avatar");
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="w3-bar menu_image w3-container">
+      <a href="index.html" class="w3-button w3-hover-red w3-left w3-padding-16"><i class="fa fa-home w3-xlarge"></i></a>
+      <a>
+        <div class="w3-dropdown-click">
+          <button onclick="dropdownFunction()" class="w3-button w3-hover-red w3-padding-16 w3-hide-large"><i class="fa fa-bars w3-xlarge"></i></button>
+          <div id="drops" class="w3-dropdown-content w3-bar-block w3-white w3-border">
+            <a href="start.html" class="w3-button w3-hover-red w3-block">Start</a>
+            <a href="about.html" class="w3-button w3-hover-red w3-block">About</a>
+            <a href="rules.html" class="w3-button w3-hover-red w3-block">Rules</a>
+            <a href="team.html" class="w3-button w3-hover-red w3-block">Team</a>
+            <a href="scores.html" class="w3-button w3-hover-red w3-block">Scores</a>
+          </div>
+        </div>
+      </a>
+      <a href="start.html" class="w3-button w3-hover-red w3-left w3-hide-small w3-hide-medium w3-padding-16">Start</a>
+      <a href="about.html" class="w3-button w3-hover-red w3-left w3-hide-small w3-hide-medium w3-padding-16">About</a>
+      <a href="rules.html" class="w3-button w3-hover-red w3-left w3-hide-small w3-hide-medium w3-padding-16">Rules</a>
+      <a href="team.html" class="w3-button w3-hover-red w3-left w3-hide-small w3-hide-medium w3-padding-16">Team</a>
+      <a href="scores.html" class="w3-button w3-hover-red w3-left w3-hide-small w3-hide-medium w3-padding-16">Scores</a>
+      <a href="login.html" id="unlogged" class="w3-text-white w3-hover-text-red w3-right w3-padding"><i class="fa fa-user-circle w3-xxlarge"></i></a>
+
+      <div id="logged" class="w3-right w3-text-white">
+        <div class="w3-dropdown-click w3-right w3-text-white">
+          <button class="w3-button" onclick="dropdown()"><div class='img_rounded'><img id='avatar' src=""</div></button>
+          <div id="drop_content" class="w3-dropdown-content w3-bar-block w3-card-4">
+            <span class="w3-margin-top w3-bar-item w3-text-red">
+              <script>document.write("Hello " + localStorage.current_user)</script>
+            </span>
+            <a href="index.html" class="w3-bar-item w3-button" onclick="logout()">Log Out</a>
+          </div>
+        </div>
+      </div>
+      </script>
+    </div>
+  </header>
+
+  <div class="w3-container w3-padding">
+    <h1>Team</h1>
+    <p>We're a small 2 person team studying at the University of Lisbon and we developed this page as a project for the subject "Introduction to Web Tecnologies", we hope you enjoy your stay and please take the time to contact us if you have any comment
+      or feedback. </p>
+    <div class="w3-center">
+      <ul>
+        <li>
+          <div class="w3-card-4 w3-margin w3-white member">
+            <img class="avatar" src="css/images/avatar/avatar1.png">
+            <div class="w3-padding w3-margin">
+              <ul class="w3-left">
+                <li><i class="fa fa-user-o"></i></li>
+                <li class="w3-margin-left">Fábio Cecílio</li>
+              </ul>
+              <ul class="w3-left">
+                <li><i class="fa fa-user-circle"></i></li>
+                <li class="w3-margin-left">fabioCecilio</li>
+              </ul>
+              <ul class="w3-left w3-margin-bottom">
+                <li><i class="fa fa-envelope-o"></i></li>
+                <li class="w3-margin-left"><a href="mailto:fc44300@alunos.fc.ul.pt?Subject=Mastermind">Enviar e-mail</a></li>
+              </ul>
+            </div>
+
+          </div>
+        </li>
+
+        <li>
+          <div class="w3-card-4 w3-margin w3-white member">
+            <img class="avatar" src="css/images/avatar/avatar3.png">
+            <div class="w3-padding w3-margin">
+              <ul class="w3-left">
+                <li><i class="fa fa-user-o"></i></li>
+                <li class="w3-margin-left">Mariana Leites</li>
+              </ul>
+              <ul class="w3-left">
+                <li><i class="fa fa-user-circle"></i></li>
+                <li class="w3-margin-left">marianaLeites</li>
+              </ul>
+              <ul class="w3-left w3-margin-bottom">
+                <li><i class="fa fa-envelope-o"></i></li>
+                <li class="w3-margin-left"><a href="mailto:fc50036@alunos.fc.ul.pt?Subject=Mastermind">Enviar e-mail</a></li>
+              </ul>
+            </div>
+
+          </div>
+        </li>
+      </ul>
+    </div>
+
+
+  </div>
+
+  <footer class="w3-container w3-black">
+    <p class="w3-right w3-small">Introdução às Tecnologias Web, Faculdade Ciências, ULisboa</p>
+  </footer>
+</body>
+
+</html>
